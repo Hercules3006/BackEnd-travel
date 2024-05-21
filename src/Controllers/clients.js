@@ -11,7 +11,7 @@ const clientsController = {
     login: async (user) => {
         const client = await clientsService.getClientByEmail(user.email);
         if(client === null) return ResponseObj(300, Constants.client_not_found, null);
-        if(!client.active) return ResponseObj(300, "Account is not active", null);
+        // if(!client.active) return ResponseObj(300, "Account is not active", null);
         if(client.password !== user.password) return ResponseObj(300, Constants.password_incorrect, null);
         const token = TokenService.createToken(client._id);
         const rs = {
